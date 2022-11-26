@@ -1,22 +1,45 @@
-import React, { useContext } from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import signupImg from '../../assets/images/register.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
-    const{createUser}=useContext(AuthContext)
+    const{createUser}=useContext(AuthContext);
+    const{googleLogin}=useContext(AuthContext);
+    const googleProvider= new GoogleAuthProvider()
+    const [signUpError,setSignUpError]=useState('');
+
+    const handleGoogleSignIn=()=>{
+     googleLogin(googleProvider)
+     .then(result=>{
+        const user=result.user;
+        console.log(user)
+     })
+     .catch(err=>console.error(err));
+    }
     const handleSignUp = event => {
+        setSignUpError('');
         event.preventDefault();
         const form=event.target;
         const email=form.email.value;
         const password=form.password.value;
+        const selectList=form.selectList.value;
+        console.log(selectList);
 
         createUser(email,password)
         .then(result=>{
             const user=result.user;
             console.log(user);
+            toast.success('Sign Up Successfull')
+            form.reset()
         })
-        .catch(err=>console.error(err));
+        .catch(err=>{
+            console.error(err)
+            setSignUpError(err.message) 
+            form.reset()       
+        });
         
 
     }
@@ -59,9 +82,11 @@ const SignUp = () => {
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-success" type="submit" value="Sign Up" />
+                            {signUpError && <p className='text-red-600'>{signUpError}</p> }
                         </div>
                     </form>
                     <p className='text-center  mb-6'>Already have an account??Please <Link className='text-success font-bold' to='/login'>Login</Link></p>
+                    <button onClick={handleGoogleSignIn} className='btn btn-primary w-full'>Continue With Google</button>
                 </div>
             </div>
         </div>

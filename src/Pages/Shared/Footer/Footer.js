@@ -7,9 +7,9 @@ const Footer = () => {
             <div>
                 <img className='w-1/6' src={footLogo} alt="" />
                 <p className="font-bold">
-                    pcMAMA Ltd. <br />Providing reliable tech since 1992
+                    pcMAMA.com Ltd. <br />Providing reliable tech since 1992
                 </p>
-                <p>Copyright © 2022 - All right reserved By pcMAMA</p>
+                <p>Copyright © 2022 - All right reserved By pcMAMA.com</p>
             </div>
             <div>
                 <div className="grid grid-flow-col gap-4">

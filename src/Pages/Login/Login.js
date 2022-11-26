@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
@@ -20,10 +21,13 @@ const Login = () => {
         .then(result=>{
             const user=result.user;
             console.log(user)
+            toast.success('Login Successfull')
+            form.reset()
         })
         .catch(err=>{
             console.error(err.message)
             setLoginError(err.message)
+            form.reset();
         })
 
     }
