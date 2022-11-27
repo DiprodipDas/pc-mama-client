@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CategoryDetails = ({single,setOrder}) => {
-    const {name,img}=single;
+    const {name,img,location,rePrice,orPrice,usetime}=single;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
         <figure className="px-10 pt-10">
@@ -9,7 +9,11 @@ const CategoryDetails = ({single,setOrder}) => {
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{name}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>Location:{location}</p>
+          <p className='text-sm'>Original Price:{orPrice}TK</p>
+          <p className='text-sm'>Resale Price:{rePrice}TK</p>
+          <p className='text-sm'>Using Time:{usetime}</p>
+          <p className='text-sm'>Resale Price:{rePrice}</p>
           <div className="card-actions">
             <label 
             htmlFor="booking-modal" 

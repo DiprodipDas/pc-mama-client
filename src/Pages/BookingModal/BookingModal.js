@@ -19,7 +19,11 @@ const BookingModal = ({ order, setOrder }) => {
             customer: cusName,
             email,
             phone,
-            location
+            location,
+            
+
+            
+
         }
 
         fetch('http://localhost:5000/bookings', {
