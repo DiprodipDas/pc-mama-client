@@ -12,17 +12,17 @@ const Categories = () => {
          <div className='grid gap-3  lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
                     
         
-                    <div className=' px-12 py-5 rounded-sm bg-lime-700'>
+                    <div className=' px-12 text-center py-5 rounded-lg bg-success outline'>
                         
-                    <Link to='/categories/1'>Dell</Link>
+                    <Link to='/categories/1 ' className='text-black-600 font-bold '>Dell</Link>
         
                     </div>
-                    <div className=' px-12 py-5 rounded-sm bg-lime-700'>
-                    <Link to='/categories/2'>Walton</Link>
+                    <div className=' px-12 text-center py-5 rounded-lg bg-success outline'>
+                    <Link to='/categories/2' className='text-black-600 font-bold '>Walton</Link>
         
                     </div>
-                    <div className=' px-12 py-5 rounded-sm bg-lime-700'>
-                    <Link to='/categories/3'>Hp</Link>
+                    <div className=' px-12 py-5 text-center rounded-lg bg-success outline'>
+                    <Link to='/categories/3' className='text-black-600 font-bold '>Hp</Link>
         
                     </div>
                     

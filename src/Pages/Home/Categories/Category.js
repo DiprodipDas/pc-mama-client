@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModal from '../../BookingModal/BookingModal';
 import CategoryDetails from './CategoryDetails';
 
 const Category = () => {
-    const data=useLoaderData();
+
+    const [order, setOrder] = useState(null);
+    const data = useLoaderData();
     return (
-        <div className='grid gap-6 grid-cols-1 lg:grid-cols-3 md:grid-cols-2'>
+        <section>
+            <div className='grid gap-6 grid-cols-1 lg:grid-cols-3 md:grid-cols-2'>
+                {
+                    data.map(single => <CategoryDetails
+                        key={single._id}
+                        single={single}
+                        setOrder={setOrder}
+                    ></CategoryDetails>)
+                }
+            </div>
             {
-                data.map(single=><CategoryDetails
-                 key={single._id}
-                 single={single}
-                ></CategoryDetails>)
+                order && 
+                <BookingModal
+                order={order}
+
+            ></BookingModal>
             }
-        </div>
+        </section>
     );
 };
 
