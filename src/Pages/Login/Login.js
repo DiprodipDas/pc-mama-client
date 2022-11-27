@@ -4,11 +4,14 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/images/login.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
     const {login,updateUser}=useContext(AuthContext);
     const[loginError,setLoginError]=useState('');
+    const[loginUserEmail,setLoginUserEmail]=useState('');
+    const[token]=useToken(loginUserEmail)
     const{googleLogin}=useContext(AuthContext);
     const googleProvider= new GoogleAuthProvider()
     const location=useLocation();
@@ -16,6 +19,10 @@ const Login = () => {
 
     const from= location.state?.from?.pathname || '/';
 
+
+     if(token){
+        navigate(from,{replace:true});
+     }
 
     // google login
     const handleGoogleSignIn=()=>{
@@ -46,7 +53,8 @@ const Login = () => {
         .then(result=>{
             const user=result.user;
             console.log(user);
-            navigate(from,{replace:true});
+            setLoginUserEmail(email)
+          
             toast.success('Login Successfull')
             form.reset()
         })

@@ -4,13 +4,21 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import signupImg from '../../assets/images/register.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const{createUser,updateUser}=useContext(AuthContext);
     const{googleLogin}=useContext(AuthContext);
     const googleProvider= new GoogleAuthProvider()
     const [signUpError,setSignUpError]=useState('');
+    
+    const [createdUserEmail,setCreatedUserEmail]=useState('')
+    const[token]=useToken(createdUserEmail)
     const navigate=useNavigate()
+
+    if(token){
+        navigate('/')
+    }
 
     const handleGoogleSignIn=()=>{
      googleLogin(googleProvider)
@@ -22,7 +30,7 @@ const SignUp = () => {
         }
         updateUser(userInfo)
         .then(()=>{
-            navigate('/');
+            saveUser(user.email);
         })
         .catch(err=>console.error(err))
      })
@@ -42,7 +50,7 @@ const SignUp = () => {
         createUser(email,password)
         .then(result=>{
             const user=result.user;
-
+            saveUser(email);
             console.log(user);
             toast.success('Sign Up Successfull')
             form.reset()
@@ -54,7 +62,28 @@ const SignUp = () => {
         });
         
 
+
     }
+
+    const saveUser=(email)=>{
+    const user={email};
+    fetch('http://localhost:5000/users',{
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify(user)
+    })
+
+    .then(res=>res.json())
+    .then(data=>{
+     setCreatedUserEmail(email);
+        
+    })
+    }
+
+
+
     return (
         <div className="hero w-full">
             <div className="hero-content grid gap-16 lg:grid-cols-2 flex-col lg:flex-row">
