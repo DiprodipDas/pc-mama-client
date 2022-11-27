@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import signupImg from '../../assets/images/register.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -10,6 +10,7 @@ const SignUp = () => {
     const{googleLogin}=useContext(AuthContext);
     const googleProvider= new GoogleAuthProvider()
     const [signUpError,setSignUpError]=useState('');
+    const navigate=useNavigate()
 
     const handleGoogleSignIn=()=>{
      googleLogin(googleProvider)
@@ -20,7 +21,9 @@ const SignUp = () => {
             displayName:user.name
         }
         updateUser(userInfo)
-        .then(()=>{})
+        .then(()=>{
+            navigate('/');
+        })
         .catch(err=>console.error(err))
      })
      .catch(err=>console.error(err));
@@ -32,6 +35,8 @@ const SignUp = () => {
         const email=form.email.value;
         const password=form.password.value;
         const selectList=form.selectList.value;
+        const name=form.name.value;
+        console.log(name);
         console.log(selectList);
 
         createUser(email,password)
