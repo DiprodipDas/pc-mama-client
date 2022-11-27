@@ -1,13 +1,38 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/images/login.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
-    const {login}=useContext(AuthContext);
+    const {login,updateUser}=useContext(AuthContext);
     const[loginError,setLoginError]=useState('');
+    const{googleLogin}=useContext(AuthContext);
+    const googleProvider= new GoogleAuthProvider()
+    const location=useLocation();
+    const navigate=useNavigate();
+
+    const from= location.state?.from?.pathname || '/';
+
+
+    // google login
+    const handleGoogleSignIn=()=>{
+        googleLogin(googleProvider)
+        .then(result=>{
+           const user=result.user;
+           console.log(user);
+           navigate(from,{replace:true});
+           const userInfo={
+               displayName:user.name
+           }
+           updateUser(userInfo)
+           .then(()=>{})
+           .catch(err=>console.error(err))
+        })
+        .catch(err=>console.error(err));
+       }
 
     const handleLogin=event=>{
         event.preventDefault();
@@ -20,7 +45,8 @@ const Login = () => {
         login(email,password)
         .then(result=>{
             const user=result.user;
-            console.log(user)
+            console.log(user);
+            navigate(from,{replace:true});
             toast.success('Login Successfull')
             form.reset()
         })
@@ -63,6 +89,7 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center  mb-6'>New to pcMAMA?Please <Link className='text-success font-bold' to='/signup'>Sign Up</Link></p>
+                    <button onClick={handleGoogleSignIn} className='btn btn-primary w-full'>Continue With Google</button>
                 </div>
             </div>
         </div>

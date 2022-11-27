@@ -6,7 +6,7 @@ import signupImg from '../../assets/images/register.jpg'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
-    const{createUser}=useContext(AuthContext);
+    const{createUser,updateUser}=useContext(AuthContext);
     const{googleLogin}=useContext(AuthContext);
     const googleProvider= new GoogleAuthProvider()
     const [signUpError,setSignUpError]=useState('');
@@ -15,7 +15,13 @@ const SignUp = () => {
      googleLogin(googleProvider)
      .then(result=>{
         const user=result.user;
-        console.log(user)
+        console.log(user);
+        const userInfo={
+            displayName:user.name
+        }
+        updateUser(userInfo)
+        .then(()=>{})
+        .catch(err=>console.error(err))
      })
      .catch(err=>console.error(err));
     }
@@ -31,6 +37,7 @@ const SignUp = () => {
         createUser(email,password)
         .then(result=>{
             const user=result.user;
+
             console.log(user);
             toast.success('Sign Up Successfull')
             form.reset()

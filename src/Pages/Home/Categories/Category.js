@@ -22,6 +22,7 @@ const Category = () => {
                 order && 
                 <BookingModal
                 order={order}
+                setOrder={setOrder}
 
             ></BookingModal>
             }

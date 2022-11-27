@@ -13,10 +13,14 @@ const Navbar = () => {
 
     const menuItems = <>
         <li><Link to="/" >Home</Link></li>
-        <li><Link to="/">Category</Link></li>
+        {/* <li><Link to="/categories">All Categories</Link></li> */}
         <li><Link to="/blogs" >Blogs</Link></li>
+        
         {user?.uid ?
+            <>
+            <li><Link to="/dashboard" >Dashboard</Link></li>
             <li><button onClick={handleLogOut} >Sign Out</button></li>
+            </>
             : <li><Link to="/login">Login</Link></li>}
 
             <p className='text-sm mt-4'>{user?.email}</p>
