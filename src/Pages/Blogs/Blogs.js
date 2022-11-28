@@ -24,7 +24,7 @@ const Blogs = () => {
             <div className="collapse mb-2">
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                    What is a unit test? Why should we write unit tests?t
+                    What is a unit test? Why should we write unit tests?
                 </div>
                 <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
                     <p>A unit test is a way of testing a unit - the smallest piece of code that can be logically isolated in a system. <br /><br />
@@ -35,7 +35,7 @@ const Blogs = () => {
             <div className="collapse">
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                    What is a unit test? Why should we write unit tests?t
+                    What is a unit test? Why should we write unit tests?
                 </div>
                 <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
                     <p>
