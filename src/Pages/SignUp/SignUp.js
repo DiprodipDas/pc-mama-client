@@ -67,7 +67,7 @@ const SignUp = () => {
 
     const saveUser=(email)=>{
     const user={email};
-    fetch('http://localhost:5000/users',{
+    fetch('https://pc-mama-server.vercel.app/users',{
         method:'POST',
         headers:{
             'content-type':'application/json'
@@ -81,7 +81,7 @@ const SignUp = () => {
         
     })
     }
-
+    
 
 
     return (
@@ -106,7 +106,7 @@ const SignUp = () => {
                             </label>
                             <select name="selectList" id="selectList" required>
                                 <option value="user">User</option>
-                                <option value="buyer">Buyer</option>
+                                <option value="buyer">Seller</option>
                             </select>
                         </div>
                         <div className="form-control">

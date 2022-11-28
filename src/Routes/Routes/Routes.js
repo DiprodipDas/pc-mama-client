@@ -11,50 +11,59 @@ import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
-const router=createBrowserRouter([
+const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
-        children:[
+        path: '/',
+        element: <Main></Main>,
+        children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             },
             {
-               path:'/blogs',
-               element:<Blogs></Blogs>
+                path: '/blogs',
+                element: <Blogs></Blogs>
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/signup',
-                element:<SignUp></SignUp>
+                path: '/signup',
+                element: <SignUp></SignUp>
             },
             {
-                path:'/categories/:id',
-                element:<Category></Category>,
-                loader:({params})=>fetch(`http://localhost:5000/categories/${params.id}`)
+                path: '/categories/:id',
+                element: <Category></Category>,
+                loader: ({ params }) => fetch(`https://pc-mama-server.vercel.app/categories/${params.id}`)
             },
-           
+            {
+                path: '*',
+                element: <div className="my-24">
+                   
+                        <h1 className="text-3xl text-center text-error font-bold">404!!</h1>
+                        <h2 className="text-2xl text-center text-error font-bold">Sorry!!!The Page is not found!</h2>
+                
+                </div>
+            }
+
         ]
     },
     {
-        path:'/dashboard',
-        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        children:[
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
             {
-                path:'/dashboard',
-                element:<MyOrders></MyOrders>
+                path: '/dashboard',
+                element: <MyOrders></MyOrders>
             },
             {
-                path:'/dashboard/users',
-                element:<AllUsers></AllUsers>
+                path: '/dashboard/users',
+                element: <AllUsers></AllUsers>
             },
         ]
 
-   }
+    }
 ])
 
 export default router;
