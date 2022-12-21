@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### What I do in pcMAMA website
+###### I make a laptop/computer resale website.When a user inside in my website he/she saw home blog and login/registration section.In the home page there are a section where I describe all the services of my websites.And also a user can see all categories in the home page.when a user click in a particular category then he/she saw all product inside the category.Also when a user click on a particular product then open a modal with some readable data and some input field.When he/she submit the modal then website added this product in dashboard.There are a admin dashboard for admin.Only admin can access this route.On the other hand a admin can make a user as a admin in this websites.
+
+## adminEmail: 
+### < kopila@la.com >
+##  adminPassword
+### <  1234567  >
