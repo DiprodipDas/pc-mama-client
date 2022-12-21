@@ -12,18 +12,18 @@ const Navbar = () => {
     }
 
     const menuItems = <>
-        <li><Link to="/" >Home</Link></li>
+        <li><Link to="/" className='font-bold' >Home</Link></li>
         {/* <li><Link to="/categories">All Categories</Link></li> */}
-        <li><Link to="/blogs" >Blogs</Link></li>
+        <li><Link to="/blogs" className='font-bold' >Blogs</Link></li>
 
         {user?.uid ?
             <>
-                <li><Link to="/dashboard" >Dashboard</Link></li>
-                <li><button onClick={handleLogOut} >Sign Out</button></li>
+                <li><Link to="/dashboard" className='font-bold' >Dashboard</Link></li>
+                <li><button onClick={handleLogOut} className='font-bold' >Sign Out</button></li>
             </>
-            : <li><Link to="/login">Login</Link></li>}
+            : <li><Link to="/login" className='font-bold'>Login</Link></li>}
 
-        <p className='text-sm mt-4'>{user?.email}</p>
+        <p className='text-sm mt-4 font-bold'>{user?.email}</p>
     </>
 
     return (
