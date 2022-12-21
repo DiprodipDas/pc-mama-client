@@ -17,7 +17,7 @@ const CategoryDetails = ({single,setOrder}) => {
           <div className="card-actions">
             <label 
             htmlFor="booking-modal" 
-            className="btn btn-primary"
+            className="btn btn-success"
             onClick={()=>setOrder(single)}
             >Buy Now</label>
           </div>
